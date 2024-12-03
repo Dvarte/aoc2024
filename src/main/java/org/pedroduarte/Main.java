@@ -20,7 +20,7 @@ public class Main {
         // ******************* Day 02 *******************
         // Part 1
         String file = "./src/main/resources/day02.txt";
-        // Day02.part1(ReadFile.readIntoArrayList(file));
+        Day02.part1(ReadFile.readIntoArrayList(file));
 
         // Part 2
         Day02.part2(ReadFile.readIntoArrayList(file));
