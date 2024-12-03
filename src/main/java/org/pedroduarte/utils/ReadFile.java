@@ -23,4 +23,17 @@ public class ReadFile {
         }
         return inputList;
     }
+
+    public static String readIntoString(String file) throws IOException {
+        StringBuilder stringBuilder = new StringBuilder();
+        try(BufferedReader br = new BufferedReader(new FileReader(file))) {
+            String line = null;
+            String ls = System.getProperty("line.separator");
+            while ((line = br.readLine()) != null) {
+                stringBuilder.append(line);
+                stringBuilder.append(ls);
+            }
+        }
+        return stringBuilder.toString();
+    }
 }
