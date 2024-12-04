@@ -14,7 +14,6 @@ public class Main {
         // Part 1
         // String file = "./src/main/resources/day01.txt";
         // Day01.part1(ReadFile.readIntoArrayList(file));
-
         // Part 2
         // Day01.part2(ReadFile.readIntoArrayList(file));
 
@@ -22,13 +21,14 @@ public class Main {
         // Part 1
         // String file = "./src/main/resources/day02.txt";
         // Day02.part1(ReadFile.readIntoArrayList(file));
-
         // Part 2
         // Day02.part2(ReadFile.readIntoArrayList(file));
 
         // ******************* Day 03 *******************
         // Part 1
         String file = "./src/main/resources/day03.txt";
-        Day03.part1(ReadFile.readIntoString(file));
+        // Day03.part1(ReadFile.readIntoString(file));
+        // Part 2
+        Day03.part2(ReadFile.readIntoString(file));
     }
 }

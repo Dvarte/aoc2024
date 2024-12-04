@@ -7,10 +7,11 @@ import java.util.regex.Pattern;
 
 public class Day03 {
 
-    private static String REGEX = "mul\\([0-9]{1,3},[0-9]{1,3}\\)";
+    private static final String REGEX = "mul\\([0-9]{1,3},[0-9]{1,3}\\)";
+    private static final String REGEX_PART2 = "do\\(\\).*?don't\\(\\)";
 
-    private static List<String> getMults(String file) {
-        Pattern pattern = Pattern.compile(REGEX);
+    private static List<String> getMults(String file, String regex) {
+        Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(file);
         return matcher.results().map(MatchResult::group).toList();
     }
@@ -20,7 +21,13 @@ public class Day03 {
     }
 
     public static void part1(String file) {
-        int result = getMults(file).stream().mapToInt(Day03::multiplyNumbers).sum();
+        int result = getMults(file, REGEX).stream().mapToInt(Day03::multiplyNumbers).sum();
+        System.out.println("Result of all multiplications is: " + result);
+    }
+
+    public static void part2(String file) {
+        String newFile = "do()" + file.replaceAll("(\\r\\n|\\n)", "");
+        int result = getMults(String.join("", getMults(newFile, REGEX_PART2)), REGEX).stream().mapToInt(Day03::multiplyNumbers).sum();
         System.out.println("Result of all multiplications is: " + result);
     }
 }
