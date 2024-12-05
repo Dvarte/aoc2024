@@ -13,7 +13,7 @@ public class ReadFile {
 
     }
 
-    public static List<int[]> readIntoArrayList(String file) throws IOException {
+    public static List<int[]> readIntoListOfIntegers(String file) throws IOException {
         List<int[]> inputList = new ArrayList<>();
         try(BufferedReader br = new BufferedReader(new FileReader(file))) {
             String line;
@@ -27,7 +27,7 @@ public class ReadFile {
     public static String readIntoString(String file) throws IOException {
         StringBuilder stringBuilder = new StringBuilder();
         try(BufferedReader br = new BufferedReader(new FileReader(file))) {
-            String line = null;
+            String line;
             String ls = System.getProperty("line.separator");
             while ((line = br.readLine()) != null) {
                 stringBuilder.append(line);
@@ -35,5 +35,16 @@ public class ReadFile {
             }
         }
         return stringBuilder.toString();
+    }
+
+    public static char[][] readIntoArrayOfChars(String file) throws IOException {
+        try(BufferedReader br = new BufferedReader(new FileReader(file))) {
+            List<char[]> dataList = new ArrayList<>();
+            String line;
+            while ((line = br.readLine()) != null) {
+                dataList.add(line.toCharArray());
+            }
+            return dataList.toArray(new char[0][]);
+        }
     }
 }
