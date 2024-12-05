@@ -40,5 +40,7 @@ public class Main {
         String file = "./src/main/resources/day05.txt";
         // Part 1
         Day05.part1(ReadFile.readPageOrderingRules(file), ReadFile.readUpdates(file));
+        // Part 2
+        // Day05.part2();
     }
 }

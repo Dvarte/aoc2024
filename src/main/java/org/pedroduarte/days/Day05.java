@@ -11,9 +11,9 @@ public class Day05 {
 
     private static List<Integer> getPreviousPages (List<List<Integer>> rules, int pageNumber) {
         List<Integer> previousPages = new ArrayList<>();
-        for (int i = 0; i < rules.size(); i++) {
-            if (rules.get(i).get(1) == pageNumber) {
-                previousPages.add(rules.get(i).get(0));
+        for (List<Integer> rule : rules) {
+            if (rule.get(1) == pageNumber) {
+                previousPages.add(rule.get(0));
             }
         }
         return previousPages;
@@ -21,17 +21,17 @@ public class Day05 {
 
     private static List<Integer> getNextPages (List<List<Integer>> rules, int pageNumber) {
         List<Integer> nextPages = new ArrayList<>();
-        for (int i = 0; i < rules.size(); i++) {
-            if (rules.get(i).get(0) == pageNumber) {
-                nextPages.add(rules.get(i).get(1));
+        for (List<Integer> rule : rules) {
+            if (rule.get(0) == pageNumber) {
+                nextPages.add(rule.get(1));
             }
         }
         return nextPages;
     }
 
     private static boolean compareLists(List<Integer> list1, List<Integer> list2) {
-        for (int i = 0; i < list2.size(); i++) {
-            if (!list1.contains(list2.get(i))) {
+        for (Integer integer : list2) {
+            if (!list1.contains(integer)) {
                 return false;
             }
         }
@@ -44,26 +44,26 @@ public class Day05 {
         List<Integer> previousPages;
         List<Integer> nextPages;
 
-        for (int j = 0; j < updates.size(); j++) {
-            for (int i = 0; i < updates.get(j).size(); i++) {
-                previousPages = getPreviousPages(rules, updates.get(j).get(i));
-                nextPages = getNextPages(rules, updates.get(j).get(i));
+        for (List<Integer> update : updates) {
+            for (int i = 0; i < update.size(); i++) {
+                previousPages = getPreviousPages(rules, update.get(i));
+                nextPages = getNextPages(rules, update.get(i));
 
                 if (i == 0) {
-                    if (compareLists(nextPages, updates.get(j).subList(1, updates.get(j).size()))) {
+                    if (compareLists(nextPages, update.subList(1, update.size()))) {
                         goOn = true;
                     } else {
                         goOn = false;
                     }
-                } else if (i == updates.get(j).size() - 1) {
-                    if (goOn && compareLists(previousPages, updates.get(j).subList(0, updates.get(j).size() - 1))) {
+                } else if (i == update.size() - 1) {
+                    if (goOn && compareLists(previousPages, update.subList(0, update.size() - 1))) {
                         goOn = true;
                     } else {
                         goOn = false;
                     }
                 } else {
-                    if (goOn && compareLists(previousPages, updates.get(j).subList(0, updates.get(j).indexOf(updates.get(j).get(i))))
-                            && compareLists(nextPages, updates.get(j).subList(updates.get(j).indexOf(updates.get(j).get(i)) + 1, updates.get(j).size()))) {
+                    if (goOn && compareLists(previousPages, update.subList(0, update.indexOf(update.get(i))))
+                            && compareLists(nextPages, update.subList(update.indexOf(update.get(i)) + 1, update.size()))) {
                         goOn = true;
                     } else {
                         goOn = false;
@@ -71,10 +71,14 @@ public class Day05 {
                 }
             }
             if (goOn) {
-                sumMiddlePageNumbers += getMiddleNumber(updates.get(j));
+                sumMiddlePageNumbers += getMiddleNumber(update);
             }
         }
 
         System.out.println("Sum of middle page numbers from correctly-ordered updates: " + sumMiddlePageNumbers);
+    }
+
+    public static void part2() {
+
     }
 }
