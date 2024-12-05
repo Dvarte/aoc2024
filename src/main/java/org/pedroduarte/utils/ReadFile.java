@@ -6,6 +6,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
+import java.util.stream.Collectors;
 
 public class ReadFile {
 
@@ -46,5 +48,33 @@ public class ReadFile {
             }
             return dataList.toArray(new char[0][]);
         }
+    }
+
+    public static List<List<Integer>> readPageOrderingRules(String file) throws IOException{
+        List<List<Integer>> inputList = new ArrayList<>();
+        try(BufferedReader br = new BufferedReader(new FileReader(file))) {
+            String line;
+            while(!Objects.equals(line = br.readLine(), "")) {
+                inputList.add(Arrays.stream(line.split("\\|"))
+                        .map(Integer::valueOf)
+                        .toList());
+            }
+        }
+        return inputList;
+    }
+
+    public static List<List<Integer>> readUpdates(String file) throws IOException {
+        List<List<Integer>> inputList = new ArrayList<>();
+        try(BufferedReader br = new BufferedReader(new FileReader(file))) {
+            String line;
+            while((line = br.readLine()) != null) {
+                if (line.length() > 5) {
+                    inputList.add(Arrays.stream(line.split(","))
+                            .map(Integer::valueOf)
+                            .toList());
+                }
+            }
+        }
+        return inputList;
     }
 }
