@@ -123,4 +123,32 @@ public class Day04 {
 
         System.out.format("XMAS word appears: %d times", xmasCounter);
     }
+
+    private static boolean checkXMASDiagonal(char[][] input, int i, int j) {
+        try {
+            if ((input[j - 1][i + 1] == 'S' && input[j + 1][i - 1] == 'M') || (input[j - 1][i + 1] == 'M' && input[j + 1][i - 1] == 'S')) {
+                if ((input[j - 1][i - 1] == 'S' && input[j + 1][i + 1] == 'M') || (input[j - 1][i - 1] == 'M' && input[j + 1][i + 1] == 'S')) {
+                    return true;
+                }
+            }
+        } catch (Exception e) {
+            return false;
+        }
+        return false;
+    }
+
+    public static void part2(char[][] input) {
+        int xmasCounter = 0;
+        for (int j = 0; j < input.length; j++) {
+            for (int i = 0; i < input[j].length; i++) {
+                if (input[j][i] == 'A') {
+                    if (checkXMASDiagonal(input, i, j)) {
+                        xmasCounter += 1;
+                    }
+                }
+            }
+        }
+        System.out.format("X-MAS words appears: %d times", xmasCounter);
+    }
+
 }

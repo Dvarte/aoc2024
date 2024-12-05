@@ -35,6 +35,8 @@ public class Main {
         // ******************* Day 04 *******************
         // Part 1
         String file = "./src/main/resources/day04.txt";
-        Day04.part1(ReadFile.readIntoArrayOfChars(file));
+        // Day04.part1(ReadFile.readIntoArrayOfChars(file));
+        // Part 2
+        Day04.part2(ReadFile.readIntoArrayOfChars(file));
     }
 }
