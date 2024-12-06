@@ -37,16 +37,16 @@ public class Main {
         // Day04.part2(ReadFile.readIntoArrayOfChars(file));
 
         // ******************* Day 04 *******************
-        String file = "./src/main/resources/day05.txt";
+        // String file = "./src/main/resources/day05.txt";
         // Part 1
         // Day05.part1(ReadFile.readPageOrderingRules(file), ReadFile.readUpdates(file));
         // Part 2
-        Day05.part2(ReadFile.readPageOrderingRules(file), ReadFile.readUpdates(file));
+        // Day05.part2(ReadFile.readPageOrderingRules(file), ReadFile.readUpdates(file));
 
         // ******************* Day 04 *******************
-        // String file = "./src/main/resources/day06.txt";
+        String file = "./src/main/resources/day06.txt";
         // Part 1
-        // Day06.part1();
+        Day06.part1(ReadFile.readIntoArrayOfChars(file));
         // Part 2
     }
 }
