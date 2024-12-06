@@ -48,5 +48,6 @@ public class Main {
         // Part 1
         Day06.part1(ReadFile.readIntoArrayOfChars(file));
         // Part 2
+        // Day06.part2(ReadFile.readIntoArrayOfChars(file));
     }
 }

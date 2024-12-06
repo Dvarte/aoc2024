@@ -1,13 +1,51 @@
 package org.pedroduarte.days;
 
-import java.util.HashMap;
-
 public class Day06 {
 
     private static int y;
     private static int x;
     private static char[][] globalMap;
     private static int moves;
+
+    private static void moveUp() {
+        while (globalMap[y - 1][x] != '#') {
+            y -= 1;
+            if (globalMap[y][x] != 'X') {
+                moves += 1;
+                globalMap[y][x] = 'X';
+            }
+        }
+    }
+
+    private static void moveRight() {
+        while (globalMap[y][x + 1] != '#') {
+            x += 1;
+            if (globalMap[y][x] != 'X') {
+                moves += 1;
+                globalMap[y][x] = 'X';
+            }
+        }
+    }
+
+    private static void moveDown() {
+        while (globalMap[y + 1][x] != '#') {
+            y += 1;
+            if (globalMap[y][x] != 'X') {
+                moves += 1;
+                globalMap[y][x] = 'X';
+            }
+        }
+    }
+
+    private static void moveLeft() {
+        while (globalMap[y][x - 1] != '#') {
+            x -= 1;
+            if (globalMap[y][x] != 'X') {
+                moves += 1;
+                globalMap[y][x] = 'X';
+            }
+        }
+    }
 
     private static int[] locatePosition(char[][] map) {
         for (int y = 0; y < map.length; y++) {
@@ -31,44 +69,10 @@ public class Day06 {
 
         try {
             while (y != 9 || x != 9) {
-
-                // Move up
-                while (globalMap[y - 1][x] != '#') {
-                    y -= 1;
-                    if (globalMap[y][x] != 'X') {
-                        moves += 1;
-                        globalMap[y][x] = 'X';
-                    }
-
-                }
-
-                // Move right
-                while (globalMap[y][x + 1] != '#') {
-                    x += 1;
-                    if (globalMap[y][x] != 'X') {
-                        moves += 1;
-                        globalMap[y][x] = 'X';
-                    }
-                }
-
-                // Move down
-                while (globalMap[y + 1][x] != '#') {
-                    y += 1;
-                    if (globalMap[y][x] != 'X') {
-                        moves += 1;
-                        globalMap[y][x] = 'X';
-                    }
-
-                }
-
-                // Move left
-                while (globalMap[y][x - 1] != '#') {
-                    x -= 1;
-                    if (globalMap[y][x] != 'X') {
-                        moves += 1;
-                        globalMap[y][x] = 'X';
-                    }
-                }
+                moveUp();
+                moveRight();
+                moveDown();
+                moveLeft();
             }
         } catch (Exception e) {
             System.out.println("Guard is out of the map.");
@@ -76,5 +80,9 @@ public class Day06 {
         }
 
         System.out.println("Number of distinct positions the guard will visit: " + moves);
+    }
+
+    public static void part2(char[][] chars) {
+        System.out.println("Prueba");
     }
 }
