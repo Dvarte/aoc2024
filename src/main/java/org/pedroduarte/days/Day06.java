@@ -68,7 +68,7 @@ public class Day06 {
         moves = 0;
 
         try {
-            while (y != 9 || x != 9) {
+            while (y != coords.length || x != coords.length) {
                 moveUp();
                 moveRight();
                 moveDown();
@@ -82,7 +82,31 @@ public class Day06 {
         System.out.println("Number of distinct positions the guard will visit: " + moves);
     }
 
-    public static void part2(char[][] chars) {
-        System.out.println("Prueba");
+    public static void part2(char[][] map) {
+        globalMap = map;
+        int[] coords = locatePosition(globalMap);
+        globalMap[coords[0]][coords[1]] = 'X';
+        y = coords[0];
+        x = coords[1];
+
+        try {
+            for(int i = 0; i < globalMap.length; i++) {
+                for(int j = 0; j <globalMap[i].length; j++) {
+                    if(globalMap[i][j] != '#') {
+                       globalMap[i][j] = '#';
+                        while (y != 9 || x != 9) {
+                            moveUp();
+                            moveRight();
+                            moveDown();
+                            moveLeft();
+                        }
+                    }
+                }
+            }
+        } catch (Exception e) {
+            System.out.println("Guard is out of the map.");
+        }
+
+        System.out.println("Different positions for the guard getting stuck in a loop: ");
     }
 }
